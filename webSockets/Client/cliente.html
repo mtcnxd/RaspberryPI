@@ -1,0 +1,76 @@
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<script src="socket.io.js" type="text/javascript"></script>
+		<script src="jquery.js" type="text/javascript"></script>
+
+		<script type="text/javascript">
+			var socket = io.connect('ws://192.168.42.13:3000');
+
+			socket.on('bienvenida', function(bienvenida) {
+				socket.emit('valueTemp', 500);
+				$("#bienvenida").text(bienvenida.digo);
+			});
+
+			socket.on('valueLux', function(data) {
+				console.log(data.numero);
+				$("#mensaje").text(data.numero);
+			});
+
+			socket.on("ButtonPress", function(State) {
+				if (State.pressed == "Presionado") {
+					$("#ButtonColor").css("background-color", "#99D6AD", function(){
+						$("#ButtonColor").fadeIn(1000);	
+					});
+				} else {
+					$("#ButtonColor").css("background-color", "#FF9999");
+				}
+				$("#ButtonState").text(State.pressed);
+			});
+
+			socket.on("changeLed", function(Status) {
+				if (Status.value == 1) {
+					$("#indicator").css("background-color", "#99D6AD");
+					$("#status").text("LED Encendido");
+				} else {
+					$("#indicator").css("background-color", "#FF9999");
+					$("#status").text("LED Apagado");
+				}
+			});
+
+			$(document).ready(function() {
+
+				$("#turnOn").click(function() {
+					socket.emit("changeValue", 1);
+				});
+				$("#turnOff").click(function() {
+					socket.emit("changeValue", 0);
+				});
+			});
+		</script>
+
+		<link rel="stylesheet" href="styles.css" type="text/css" />
+	</head>
+	<body>
+		<div class="content">
+			<h1>Probando Node.JS + Express + Socket.IO</h1>
+			<div class="controls">
+				<input id="turnOn" type="button" value="Encender"/>
+				<input id="turnOff" type="button" value="Apagar"/>
+			</div>
+
+			<div class="controls">
+				<span id="bienvenida" class="panel"> Loading.. </span>
+				<span id="mensaje" class="panel"> Loading... </span>
+			</div>
+
+			<div class="controls" id="indicator">
+				<span id="status"> </span>
+			</div>
+
+			<div class="controls" id="ButtonColor">
+				<h1><span id="ButtonState"> </span></h1>
+			</div>
+		</div>
+	</body>
+</html>

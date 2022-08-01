@@ -1,0 +1,4 @@
+Comando para cambiar la tarjeta de sonido de raspiconfig
+
+
+sudo bash -c 'echo -e " defaults.pcm.card 1 \ndefaults.ctl.card 1" > /etc/asound.conf'

@@ -1,0 +1,52 @@
+.content {
+	margin: 0px auto 0px auto;
+	border: solid 1px #DDD;
+	display: table;
+	width: 80%;
+	font-family: Arial, Helvetica, sans-serif;
+	background-color: #DEDEDE;
+}
+
+.controls {
+	border: solid 1px #AAA;
+	background-color: #FFF;
+	border-radius: 5px;
+	width: 40%;
+	margin: 10px;
+	min-height: 50px;
+	padding: 30px;
+	float: left;
+	box-shadow: 5px 5px 5px #BBB;
+}
+.panel {
+	margin-left: 50px;
+	font-size: 40px;
+}
+input {
+	border: solid 1px #66A366;
+	background-color: #99C299;
+	border-radius: 5px;
+	margin: 0px 5px 0px 5px;
+	font-weight: bold;
+	padding: 15px;
+}
+
+.on {
+	background-color: #99D6AD;
+}
+
+.off {
+	background-color: #FF9999;
+}
+
+@media screen and (max-width: 700px) {
+	.content {
+		width: 100%;
+	}
+
+	.controls {
+		margin: 0px auto 0px auto;
+		width: 85%;
+		margin: 5px;
+	}
+}
