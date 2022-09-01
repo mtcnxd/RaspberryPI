@@ -7,6 +7,7 @@ aio = Client(ADAFRUIT_IO_USERNAME, ADAFRUIT_IO_KEY)
 
 try:
     temperature = aio.feeds('temperature')
+
 except RequestError:
     feed = Feed(name="temperature")
     temperature = aio.create_feed(feed)
@@ -22,4 +23,4 @@ for d in data:
 
 data = aio.receive(temperature.key)
 print('---------------------------------------')
-print('Latest value from temperature: {0}'.format(data.value))    
+print('Latest value from temperature: {0}'.format(data.value))
